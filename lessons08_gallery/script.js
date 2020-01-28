@@ -85,6 +85,72 @@ const galleryItems = [
   }
 ];
 
-console.log(galleryItems[2].preview);
+const refs = {
+  gallery: document.querySelector(".image-gallery"),
+  fullview: document.querySelector(".fullview"),
+  preview: document.querySelector(".preview"),
+  btnGroup: document.querySelector(".btn-group")
+};
 
-document.body.innerHTML = `<img src='${galleryItems[2].preview}'/>`;
+let nextCount = 0;
+refs.fullview.innerHTML = `<img src='${galleryItems[0].fullview}'/>`;
+
+const drawToHtml = galleryItems
+  .map(
+    (elem, indx) => `<li class='list-item'>
+<img src='${elem.preview}' data-fullview='${elem.fullview}' data-pos='${indx}' />
+</li>`
+  )
+  .join(" ");
+
+// console.log(drawToHtml);
+
+refs.preview.insertAdjacentHTML("beforeend", drawToHtml);
+
+//--------------- with innerHTML
+// galleryItems.reduce((acc, elem) => {
+//   refs.preview.innerHTML += `<li>
+//  <img src='${elem.preview}' />
+// </li>`;
+// }, "");
+
+const handlePreviewHandler = evt => {
+  console.log(nextCount);
+  console.log("pos --->", evt.target.dataset.pos);
+  nextCount = Number(evt.target.dataset.pos);
+  if (evt.target.nodeName !== "IMG") {
+    return;
+  }
+  console.log("fullview", evt.target.dataset.fullview);
+  console.log("src", refs.fullview.querySelector("img").src);
+  refs.fullview.querySelector("img").src = evt.target.dataset.fullview;
+};
+
+refs.preview.addEventListener("click", handlePreviewHandler);
+
+const handleFullviewHandler = evt => {
+  console.log(evt.target);
+
+  evt.target.classList.toggle("full");
+};
+
+refs.fullview.addEventListener("click", handleFullviewHandler);
+const handleClickBtn = evt => {
+  if (evt.target.className === "next") {
+    nextCount++;
+    console.log("click next");
+    console.log(nextCount);
+    if (nextCount <= galleryItems.length) {
+      refs.fullview.innerHTML = `<img src='${galleryItems[nextCount].fullview}'/>`;
+    } else {
+      nextCount = 0;
+    }
+  } else if (evt.target.className === "prev") {
+    nextCount--;
+    console.log("click prev");
+    console.log(nextCount);
+    refs.fullview.innerHTML = `<img src='${galleryItems[nextCount].fullview}'/>`;
+  }
+};
+
+refs.btnGroup.addEventListener("click", handleClickBtn);

@@ -1,0 +1,36 @@
+.image-gallery {
+  width: 800px;
+  height: 300px;
+}
+
+img {
+  width: 100%;
+}
+
+.list-item {
+  width: 15%;
+  height: 100px;
+  list-style: none;
+}
+
+.preview {
+  display: flex;
+}
+
+.full {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+}
+
+.btn-group {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  justify-content: space-between;
+}
