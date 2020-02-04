@@ -34,3 +34,16 @@ img {
   display: flex;
   justify-content: space-between;
 }
+
+.observContainer {
+  height: 400px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.item {
+  height: 100vh;
+}
