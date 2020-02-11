@@ -1,0 +1,47 @@
+@import "./fonts.css";
+@import "~normalize.css";
+
+.container {
+  width: 300px;
+  height: 300px;
+  background-image: url("../assets/images/webpackImage.png");
+  background-position: center;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 40px;
+  color: rgb(209, 18, 18);
+}
+
+body {
+  font-family: "SourceCodePro", sans-serif;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+
+.box {
+  width: 500px;
+  text-align: center;
+  margin: auto;
+}
+
+.list-item {
+  list-style: none;
+}
+.box-list {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: white;
+}

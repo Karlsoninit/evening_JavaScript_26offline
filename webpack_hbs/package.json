@@ -1,0 +1,40 @@
+{
+  "name": "webpack-default",
+  "version": "1.0.0",
+  "description": "group project",
+  "main": "normalize.css",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development --port 4321 --open --watch",
+    "build": "webpack --mode production",
+    "prod": "webpack  --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karlsoninit/evening_JavaScript_26offline.git"
+  },
+  "author": "Maxim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Karlsoninit/evening_JavaScript_26offline/issues"
+  },
+  "homepage": "https://github.com/Karlsoninit/evening_JavaScript_26offline#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.0.2",
+    "handlebars-loader": "^1.7.1",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^1.1.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.3",
+    "normalize.css": "^8.0.1",
+    "uuid": "^3.4.0"
+  }
+}
