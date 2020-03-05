@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "grud": "test json server",
+      "id": 4
+    },
+    {
+      "grud": "test json server",
+      "id": 8
+    },
+    {
+      "grud": "test json server",
+      "id": 9
+    }
+  ],
+  "users": [
+    {
+      "firstName": "max",
+      "lastName": "Norets",
+      "age": "18",
+      "email": "maksim@email.com",
+      "id": 1
+    }
+  ]
+}
