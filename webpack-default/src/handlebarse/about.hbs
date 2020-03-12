@@ -1,0 +1,22 @@
+<ul class="box">
+    {{#each this}} {{#if active}}
+    <li class="box-list">
+        <h2>{{name}}</h2>
+        <img src="{{image}}" />
+        <ul class="list">
+            {{#each hobbies}}
+            <li class="list-item">{{this}}</li>
+            {{/each}}
+        </ul>
+        {{else}}
+    <li class="box-list">
+        <h2>{{name}}</h2>
+        <img src="{{image}}" />
+        <h2 class="title">DIED</h2>
+
+    </li>
+    {{/if}}
+    </li>
+    {{/each}}
+
+</ul>

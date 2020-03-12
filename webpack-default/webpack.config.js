@@ -15,7 +15,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugins({
       filename: "index.html",
-      template: "./src/assets/index.html"
+      template: "./src/index.html"
     })
   ],
   module: {
@@ -24,7 +24,24 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"]
       },
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: "file-loader"
+          }
+        ]
+      },
+      {
+        test: /\.(ttf|woff)$/,
+        use: [
+          {
+            loader: "file-loader"
+          }
+        ]
+      },
+      { test: /\.hbs$/, exclude: /node_modules/, use: "handlebars-loader" }
     ]
   }
 };

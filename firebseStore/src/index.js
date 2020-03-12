@@ -1,67 +1,44 @@
-import "./styles.css";
-import axios from "axios";
-import { transformResult } from "./components/services";
-// axios
-//   .post("https://rn-todo-48cbb.firebaseio.com/wishes.json", {
-//     title: "cofe brake !!"
-//   })
-//   .then(data => console.log(data));
+import services from "./components/services";
 
-const getWishes = () => {
-  axios.get("https://rn-todo-48cbb.firebaseio.com/wishes.json").then(data => {
-    renderToHTML(transformResult(data.data));
-  });
-};
-getWishes();
+console.log(services);
 
-const renderToHTML = wishes => {
-  console.log("wishes", wishes);
-  document.querySelector(".wishesCloud").innerHTML = "";
-  document
-    .querySelector(".wishesCloud")
-    .insertAdjacentHTML(
-      "beforeend",
-      wishes
-        .map(
-          wish =>
-            `<li id=${wish.id}><h2>${wish.title}</h2><button class='btn'>DELETE</button></li>`
-        )
-        .join(" ")
-    );
-};
+(async () => {
+  const data = await services.getTodo();
+  console.log(data);
 
-const deleteWIsh = id => {
-  axios
-    .delete(`https://rn-todo-48cbb.firebaseio.com/wishes/${id}.json`)
-    .then(data => {
-      console.log(data);
-      getWishes();
-    });
-};
-
-// axios
-//   .post("https://rn-todo-48cbb.firebaseio.com/wishes.json", {
-//     title: "React"
-//   })
-//   .then(data => {
-//     console.log(data);
-//   });
-
-// setTimeout(() => {
-//   console.log(document.querySelector(".btn"));
-// }, 1000);
-
-document.querySelector(".wishesCloud").addEventListener("click", e => {
-  if (e.target.nodeName !== "BUTTON") {
+  if (!data.data) {
     return;
   }
 
-  const id = e.target.closest("li").id;
-  deleteWIsh(id);
-});
+  services.drawToHTML(services.transformResponseFB(data.data));
+})();
 
-// document
-// .querySelectorAll(".btn")
-// .addEventListener("click", ({ target }) =>
-//   console.log(target.closest("li").id)
-// );
+const postNewTodo = async evt => {
+  evt.preventDefault();
+  const task = {};
+  const value = evt.target.elements[0].value;
+  const name = evt.target.elements[0].name;
+  task[name] = value;
+  await services.putTodo(task);
+  const data = await services.getTodo();
+
+  services.drawToHTML(services.transformResponseFB(data.data));
+};
+
+services.refs.form.addEventListener("submit", postNewTodo);
+
+const handleDelete = async evt => {
+  if (evt.target.nodeName !== "BUTTON") {
+    return;
+  }
+  await services.delTodo(evt.target.closest("li").id);
+  const data = await services.getTodo();
+
+  services.drawToHTML(
+    services.transformResponseFB(
+      data.data ? data.data : [{ todo: "sorry, task not found !!(" }]
+    )
+  );
+};
+
+services.refs.wishesCloud.addEventListener("click", handleDelete);

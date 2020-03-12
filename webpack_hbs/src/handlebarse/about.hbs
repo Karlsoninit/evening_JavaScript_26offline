@@ -1,6 +1,6 @@
-<ul class="box">
+<ul class="box-list_container">
     {{#each this}} {{#if active}}
-    <li class="box-list">
+    <li class="box-list" id={{id}}>
         <h2>{{name}}</h2>
         <img src="{{image}}" />
         <ul class="list">
@@ -8,14 +8,8 @@
             <li class="list-item">{{this}}</li>
             {{/each}}
         </ul>
-        {{else}}
-    <li class="box-list">
-        <h2>{{name}}</h2>
-        <img src="{{image}}" />
-        <h2 class="title">DIED</h2>
-
-    </li>
-    {{/if}}
+        {{/if}}
+        <button class="del">DELETE</button>
     </li>
     {{/each}}
 
