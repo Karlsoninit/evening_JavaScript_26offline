@@ -17,3 +17,22 @@ body {
    * CSS image reference example.
    */
 }
+
+.registerContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid green;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.messageError {
+  font-size: 30px;
+  color: red;
+}
+.messageSuccess {
+  font-size: 30px;
+  color: green;
+}
