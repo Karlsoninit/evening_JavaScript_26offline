@@ -1,0 +1,11 @@
+.containerTrue {
+  border: 1px solid green;
+}
+
+.containerFalse {
+  border: 1px solid tomato;
+}
+
+.availableSizes {
+  display: flex;
+}
