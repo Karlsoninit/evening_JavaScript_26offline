@@ -29,14 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProductCard({
-  title,
-  sku,
-  availableSizes,
-  showSize,
-  style,
-  price,
-}) {
+export default function ProductCard({ data, showSize, getCurrentProduct }) {
   const classes = useStyles();
 
   return (
@@ -44,30 +37,33 @@ export default function ProductCard({
       <CardActionArea>
         <div style={{ position: "relative" }}>
           <div style={{ position: "absolute", display: "flex" }}>
-            {availableSizes.map((size, indx) => (
-              <BoxSize key={indx}>
+            {data.availableSizes.map((size, indx) => (
+              <BoxSize
+                key={indx}
+                onClick={() => getCurrentProduct({ ...data, chooseSize: size })}
+              >
                 <h2>{size}</h2>
               </BoxSize>
             ))}
           </div>
           <CardMedia
             className={classes.media}
-            image={require(`../../../products/${sku}_1.jpg`)}
+            image={require(`../../../products/${data.sku}_1.jpg`)}
             title="Contemplative Reptile"
           />
         </div>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {title}
+            {data.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {style}
+            {data.style}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          {price}
+          {data.price}
         </Button>
         <Button size="small" color="primary">
           Learn More
