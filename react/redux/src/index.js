@@ -7,7 +7,7 @@ import { store } from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App default={1} />
   </Provider>,
   document.getElementById("root")
 );
